@@ -4,7 +4,6 @@ import Video from 'react-native-video';
 import MediaControls, { PLAYER_STATES } from 'react-native-video-basic-controls';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 let windowWidth = Dimensions.get('window').width;
-// let windowHeight = Dimensions.get("window").height
 class App extends Component {
   state = {
     buffer: false,
@@ -24,8 +23,7 @@ class App extends Component {
     fullscreen: false,
   };
   async componentDidMount() {
-    this.setState({ loading: true });
-    // multiply(3, 7).then((itm)=>console.log(itm));
+    this.setState({ loading: true })
     const VIMEO_ID = '76979871';
     await fetch(`https://player.vimeo.com/video/${VIMEO_ID}/config`)
       .then((res) => res.json())
@@ -109,11 +107,6 @@ class App extends Component {
             />
             {Platform.OS === 'android' && (
               <MediaControls
-                // containerStyle={{
-                //   height: windowWidth * 0.65,
-                //   width: windowWidth,
-                // }}
-                isFullScreen={this.state.fullscreen}
                 duration={this.state.duration}
                 isLoading={this.state.isLoading}
                 mainColor="#00DCCD"
