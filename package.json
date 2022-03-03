@@ -34,7 +34,17 @@
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "react",
+    "native",
+    "video",
+    "controls",
+    "basic",
+    "fullscreen",
+    "react native video controls",
+    "react native video player",
+    "react native video fullscreen",
+    "react native video basic controls"
   ],
   "repository": "https://github.com/prathmesh28/react-native-video-basic-controls",
   "author": "Prathamesh <prathmeshkerkar10@gmail.com> (https://github.com/prathmesh28)",
