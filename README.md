@@ -1,5 +1,5 @@
 # react-native-video-basic-controls
-
+React native video controls.
 Controls for the [react-native-video](https://github.com/react-native-video/react-native-video) component with full screen support.
 
 ## Installation
