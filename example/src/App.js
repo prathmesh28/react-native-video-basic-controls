@@ -87,7 +87,7 @@ class App extends Component {
                 this.setState({ currentTime: data.currentTime });
               }}
               controls={false}
-              // controls={Platform.OS === 'android' ? false : true}
+              controls={Platform.OS === 'android' ? false : true}
               paused={this.state.paused}
               onEnd={() => {
                 // this.setState({ playerState: PLAYER_STATES.ENDED })
