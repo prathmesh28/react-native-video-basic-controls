@@ -25,5 +25,5 @@
     "target": "esnext",
     "allowJs": true,
   },
-  "exclude": [" **/*.config.js"]
+  "exclude": ["*.config.js"]
 }
