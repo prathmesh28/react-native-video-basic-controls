@@ -76,6 +76,8 @@ export default class SliderOP extends PureComponent {
      */
     maximumValue: PropTypes.number,
 
+    bufferValue: PropTypes.number,
+
     /**
      * Step value of the slider. The value should be between 0 and
      * (maximumValue - minimumValue). Default value is 0.
@@ -88,6 +90,8 @@ export default class SliderOP extends PureComponent {
      */
     minimumTrackTintColor: PropTypes.string,
 
+    
+    bufferTrackTintColor: PropTypes.string,
     /**
      * The color used for the track to the right of the button. Overrides the
      * default blue gradient image.
@@ -178,8 +182,10 @@ export default class SliderOP extends PureComponent {
     value: 0,
     minimumValue: 0,
     maximumValue: 1,
+    bufferValue: 1,
     step: 0,
     minimumTrackTintColor: '#3f3f3f',
+    bufferTrackTintColor: '#ffffff',
     maximumTrackTintColor: '#b3b3b3',
     thumbTintColor: '#343434',
     thumbTouchSize: { width: 40, height: 40 },
@@ -224,7 +230,9 @@ export default class SliderOP extends PureComponent {
     const {
       minimumValue,
       maximumValue,
+      bufferValue,
       minimumTrackTintColor,
+      bufferTrackTintColor,
       maximumTrackTintColor,
       thumbTintColor,
       thumbImage,
@@ -269,6 +277,14 @@ export default class SliderOP extends PureComponent {
       ...valueVisibleStyle,
     };
 
+    const bufferTrackWidth = maximumValue===0?0:(bufferValue / maximumValue) * (containerSize.width )
+    const bufferTrackStyle = {
+      position: 'absolute',
+      width: Animated.add(bufferTrackWidth, 0),
+      backgroundColor: bufferTrackTintColor,
+      ...valueVisibleStyle,
+    };
+
     const touchOverflowStyle = this._getTouchOverflowStyle();
 
     return (
@@ -286,10 +302,15 @@ export default class SliderOP extends PureComponent {
           renderToHardwareTextureAndroid
           onLayout={this._measureTrack}
         />
+         <Animated.View
+          renderToHardwareTextureAndroid
+          style={[mainStyles.track, trackStyle, bufferTrackStyle]}
+        />
         <Animated.View
           renderToHardwareTextureAndroid
           style={[mainStyles.track, trackStyle, minimumTrackStyle]}
         />
+       
         <Animated.View
           onLayout={this._measureThumb}
           renderToHardwareTextureAndroid

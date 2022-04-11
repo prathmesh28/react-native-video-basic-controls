@@ -5,6 +5,7 @@ import {
   TouchableWithoutFeedback,
   GestureResponderEvent,
   ViewStyle,
+  StatusBar,
 } from 'react-native';
 import styles from './MediaControls.style';
 import { PLAYER_STATES } from './constants/playerStates';
@@ -19,9 +20,11 @@ export type Props = {
   children: React.ReactNode;
   containerStyle: ViewStyle;
   duration: number;
+  bufferValue: number;
   fadeOutDelay?: number;
   isLoading: boolean;
   mainColor: string;
+  bufferColor: string;
   onFullScreen?: (event: GestureResponderEvent) => void;
   fullScreenIconP: React.ReactNode;
   fullScreenIconL: React.ReactNode;
@@ -42,9 +45,11 @@ const MediaControls = (props: Props) => {
     children,
     containerStyle: customContainerStyle = {},
     duration,
+    bufferValue = 0,
     fadeOutDelay = 5000,
     isLoading = false,
     mainColor = 'rgba(12, 83, 175, 0.9)',
+    bufferColor= "#fff",
     onFullScreen,
     fullScreenIconP,
     fullScreenIconL,
@@ -185,6 +190,8 @@ const MediaControls = (props: Props) => {
       <Animated.View
         style={[styles.container, customContainerStyle, { opacity }]}
       >
+
+      {isFullscreen&&<StatusBar hidden/>}
         {isVisible && (
           <View style={[styles.container, customContainerStyle]}>
             <View
@@ -202,11 +209,13 @@ const MediaControls = (props: Props) => {
               isLoading={isLoading}
               playerState={playerState}
               customIconStyle={iconStyle}
-            />
+            /> 
             <Slider
               progress={progress}
               duration={duration}
+              bufferValue={bufferValue}
               mainColor={mainColor}
+              bufferColor={bufferColor}
               onFullScreen={
                 Boolean(onFullScreen) ? onFullScreen : onFullScreenFunction
               }
@@ -218,6 +227,7 @@ const MediaControls = (props: Props) => {
               onSeeking={onSeeking}
               onPause={onPause}
               customSliderStyle={sliderStyle}
+              
             />
           </View>
         )}

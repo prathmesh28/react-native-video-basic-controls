@@ -74,8 +74,9 @@ Refer to [example](https://github.com/prathmesh28/react-native-video-basic-contr
 | fullScreenIconP | component  | Yes      |                   | Fullscreen icon (Portrait mode)                                      |
 | containerStyle | StyleSheet | Yes  |                        | Apply styles to the container                                        |
 | iconStyle    | StyleSheet | Yes    |                        | Apply styles to fullscreen icon                                      |
-| sliderStyle | StyleSheet | Yes    |                        | Apply styles to Slider                                                |
-
+| sliderStyle | StyleSheet | Yes    |                         | Apply styles to Slider                                               |
+| bufferValue | number    | Yes      |                        | Add buffer value to Slider                                           |
+| bufferColor | String    | Yes      |                        | change color of buffer                                               |
 
 ```js
 sliderStyle={{

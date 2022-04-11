@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-const containerBackgroundColor = "rgba(45, 59, 62, 0.4)";
+const containerBackgroundColor = "rgba(45, 59, 62, 0.3)";
 const white = "#fff";
 
 export default StyleSheet.create({

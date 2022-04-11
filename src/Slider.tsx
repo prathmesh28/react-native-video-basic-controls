@@ -15,7 +15,9 @@ type Props = Pick<
   MediaControlsProps,
   | 'progress'
   | 'duration'
+  | 'bufferValue'
   | 'mainColor'
+  | 'bufferColor'
   | 'onFullScreen'
   | 'playerState'
   | 'onSeek'
@@ -36,7 +38,9 @@ const Slider = (props: Props) => {
     fullScreenIconP,
     customSliderStyle,
     duration,
+    bufferValue,
     mainColor,
+    bufferColor,
     onFullScreen,
     isFullscreen,
     onPause,
@@ -62,7 +66,6 @@ const Slider = (props: Props) => {
     props.onSeek(value);
     onPause();
   };
-
   return (
     <View
       style={[styles.controlsRow, styles.progressContainer, containerStyle]}
@@ -89,6 +92,8 @@ const Slider = (props: Props) => {
             { backgroundColor: mainColor },
           ]}
           minimumTrackTintColor={mainColor}
+          bufferTrackTintColor={bufferColor}
+          bufferValue={bufferValue}
         />
       </View>
       <TouchableOpacity

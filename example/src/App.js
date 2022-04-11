@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
 import Video from 'react-native-video';
-import MediaControls, { PLAYER_STATES } from 'react-native-video-basic-controls';
+import MediaControls, {
+  PLAYER_STATES,
+} from 'react-native-video-basic-controls';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 let windowWidth = Dimensions.get('window').width;
 class App extends Component {
@@ -17,13 +19,14 @@ class App extends Component {
     videoPlayer: null,
     currentTime: 0,
     duration: 0,
+    bufferValue:0,
     isLoading: true,
     paused: true,
     playerState: PLAYER_STATES.PAUSED,
     fullscreen: false,
   };
   async componentDidMount() {
-    this.setState({ loading: true })
+    this.setState({ loading: true });
     const VIMEO_ID = '76979871';
     await fetch(`https://player.vimeo.com/video/${VIMEO_ID}/config`)
       .then((res) => res.json())
@@ -83,7 +86,9 @@ class App extends Component {
                   isLoading: false,
                 });
               }}
+              
               onProgress={(data) => {
+                this.state.bufferValue!==data.playableDuration?this.setState({ bufferValue: data.playableDuration }):null
                 this.setState({ currentTime: data.currentTime });
               }}
               controls={false}
@@ -107,9 +112,11 @@ class App extends Component {
             />
             {Platform.OS === 'android' && (
               <MediaControls
+                bufferValue={this.state.bufferValue}
                 duration={this.state.duration}
                 isLoading={this.state.isLoading}
                 mainColor="#00DCCD"
+                // bufferColor=""
                 sliderStyle={{
                   thumbStyle: {
                     width: 12,
@@ -146,8 +153,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#212121',
   },
   videoStyle: {
-    height: windowWidth * 0.65,
-    width: windowWidth,
+    width: '100%',
+    height: '100%',
   },
 });
 
