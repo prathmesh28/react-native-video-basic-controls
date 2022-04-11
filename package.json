@@ -1,6 +1,6 @@
 {
   "name": "react-native-video-basic-controls",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Controls for the React Native <Video> component at react-native-video.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
