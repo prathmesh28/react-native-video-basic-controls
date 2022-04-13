@@ -22,7 +22,8 @@ export default StyleSheet.create({
     alignItems: "center",
     alignSelf: "stretch",
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "space-around",
+    flexDirection:'row',
   },
   fullScreenContainer: {
     alignItems: "center",

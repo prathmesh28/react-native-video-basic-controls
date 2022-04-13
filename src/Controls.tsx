@@ -17,6 +17,8 @@ export type CustomIconStyle = {
 
 type ControlsProps = Pick<Props, 'isLoading' | 'playerState' | 'onReplay'> & {
   onPause: () => void;
+  onSkipFor: () => void;
+  onSkipBack: () => void;
   customIconStyle?: CustomIconStyle;
 };
 
@@ -27,21 +29,51 @@ const Controls = (props: ControlsProps) => {
     playerState,
     onReplay,
     onPause,
+    onSkipFor,
+    onSkipBack,
   } = props;
   const icon = getPlayerStateIcon(playerState);
+  const forwardIcon = require('./assets/ic_forward.png');
+  const backwardIcon = require('./assets/ic_backward.png');
+
   const pressAction = playerState === PLAYER_STATES.ENDED ? onReplay : onPause;
 
   const content = isLoading ? (
     <ActivityIndicator size="large" color="#FFF" />
   ) : (
-    <TouchableOpacity
-      style={[styles.playButton, CstmIconStyles]}
-      onPress={pressAction}
-      accessibilityLabel={PLAYER_STATES.PAUSED ? 'Tap to Play' : 'Tap to Pause'}
-      accessibilityHint={'Plays and Pauses the Video'}
-    >
-      <Image source={icon} style={styles.playIcon} />
-    </TouchableOpacity>
+    <>
+      {(Boolean(onSkipBack) || Boolean(onSkipFor)) && (
+        <TouchableOpacity
+          style={[styles.playButton, CstmIconStyles]}
+          onPress={onSkipBack}
+          accessibilityLabel={'Tap to skip back'}
+          accessibilityHint={'skip back 10 sec'}
+        >
+          <Image source={backwardIcon} style={styles.playIcon} />
+        </TouchableOpacity>
+      )}
+      <TouchableOpacity
+        style={[styles.playButton, CstmIconStyles]}
+        onPress={pressAction}
+        accessibilityLabel={
+          PLAYER_STATES.PAUSED ? 'Tap to Play' : 'Tap to Pause'
+        }
+        accessibilityHint={'Plays and Pauses the Video'}
+      >
+        <Image source={icon} style={styles.playIcon} />
+      </TouchableOpacity>
+      {/* {console.log(onSkipFor,onSkipBack)} */}
+      {(Boolean(onSkipBack) || Boolean(onSkipFor)) && (
+        <TouchableOpacity
+          style={[styles.playButton, CstmIconStyles]}
+          onPress={onSkipFor}
+          accessibilityLabel={'Tap to skip forward'}
+          accessibilityHint={'skip forward 10 sec'}
+        >
+          <Image source={forwardIcon} style={styles.playIcon} />
+        </TouchableOpacity>
+      )}
+    </>
   );
 
   return <View style={[styles.controlsRow]}>{content}</View>;

@@ -32,6 +32,8 @@ export type Props = {
   onReplay: () => void;
   onSeek: (value: number) => void;
   onSeeking: (value: number) => void;
+  onSkipFor: () => void;
+  onSkipBack: () => void;
   playerState: PLAYER_STATES;
   progress: number;
   showOnStart?: boolean;
@@ -54,6 +56,8 @@ const MediaControls = (props: Props) => {
     fullScreenIconP,
     fullScreenIconL,
     onReplay: onReplayCallback,
+    onSkipFor,
+    onSkipBack,
     onSeek,
     onSeeking,
     playerState,
@@ -206,6 +210,8 @@ const MediaControls = (props: Props) => {
             <Controls
               onPause={onPause}
               onReplay={onReplay}
+              onSkipFor={onSkipFor}
+              onSkipBack={onSkipBack}
               isLoading={isLoading}
               playerState={playerState}
               customIconStyle={iconStyle}

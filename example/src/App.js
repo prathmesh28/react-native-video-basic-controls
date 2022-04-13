@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import Video from 'react-native-video';
 import MediaControls, {
   PLAYER_STATES,
@@ -19,7 +19,7 @@ class App extends Component {
     videoPlayer: null,
     currentTime: 0,
     duration: 0,
-    bufferValue:0,
+    bufferValue: 0,
     isLoading: true,
     paused: true,
     playerState: PLAYER_STATES.PAUSED,
@@ -86,9 +86,10 @@ class App extends Component {
                   isLoading: false,
                 });
               }}
-              
               onProgress={(data) => {
-                this.state.bufferValue!==data.playableDuration?this.setState({ bufferValue: data.playableDuration }):null
+                this.state.bufferValue !== data.playableDuration
+                  ? this.setState({ bufferValue: data.playableDuration })
+                  : null;
                 this.setState({ currentTime: data.currentTime });
               }}
               controls={false}
@@ -138,6 +139,12 @@ class App extends Component {
                 onSeeking={(itm) => this.onSeeking(itm)}
                 playerState={this.state.playerState}
                 progress={this.state.currentTime}
+                onSkipFor={() =>
+                  this.videoPlayer.seek(this.state.currentTime + 5, 30)
+                }
+                onSkipBack={() =>
+                  this.videoPlayer.seek(this.state.currentTime - 5, 30)
+                }
               >
                 <MediaControls.Toolbar></MediaControls.Toolbar>
               </MediaControls>
