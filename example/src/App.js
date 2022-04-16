@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import Video from 'react-native-video';
 import MediaControls, {
   PLAYER_STATES,
 } from 'react-native-video-basic-controls';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-let windowWidth = Dimensions.get('window').width;
 class App extends Component {
   state = {
     buffer: false,
@@ -56,7 +55,7 @@ class App extends Component {
 
   render() {
     if (this.state.loading) {
-      return <View></View>;
+      return <View />;
     } else
       return (
         <View style={styles.container}>
@@ -70,10 +69,7 @@ class App extends Component {
                 uri: this.state.videoUrl,
                 type: 'mp4',
               }}
-              style={{
-                width: '100%',
-                height: '100%',
-              }}
+              style={styles.videoStyle}
               poster={this.state.thumbnailUrl}
               resizeMode={'contain'}
               repeat
@@ -92,7 +88,6 @@ class App extends Component {
                   : null;
                 this.setState({ currentTime: data.currentTime });
               }}
-              controls={false}
               controls={Platform.OS === 'android' ? false : true}
               paused={this.state.paused}
               onEnd={() => {
@@ -146,7 +141,7 @@ class App extends Component {
                   this.videoPlayer.seek(this.state.currentTime - 5, 30)
                 }
               >
-                <MediaControls.Toolbar></MediaControls.Toolbar>
+                {/* <MediaControls.Toolbar></MediaControls.Toolbar> */}
               </MediaControls>
             )}
           </View>

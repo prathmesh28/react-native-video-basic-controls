@@ -62,7 +62,6 @@ const Controls = (props: ControlsProps) => {
       >
         <Image source={icon} style={styles.playIcon} />
       </TouchableOpacity>
-      {/* {console.log(onSkipFor,onSkipBack)} */}
       {(Boolean(onSkipBack) || Boolean(onSkipFor)) && (
         <TouchableOpacity
           style={[styles.playButton, CstmIconStyles]}

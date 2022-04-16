@@ -90,7 +90,6 @@ export default class SliderOP extends PureComponent {
      */
     minimumTrackTintColor: PropTypes.string,
 
-    
     bufferTrackTintColor: PropTypes.string,
     /**
      * The color used for the track to the right of the button. Overrides the
@@ -249,8 +248,7 @@ export default class SliderOP extends PureComponent {
       ...other
     } = this.props;
 
-    const { value, containerSize, trackSize, thumbSize, allMeasured } =
-      this.state;
+    const { value, containerSize, thumbSize, allMeasured } = this.state;
 
     const mainStyles = styles || defaultStyles;
     const thumbLeft = value.interpolate({
@@ -277,7 +275,10 @@ export default class SliderOP extends PureComponent {
       ...valueVisibleStyle,
     };
 
-    const bufferTrackWidth = maximumValue===0?0:(bufferValue / maximumValue) * (containerSize.width )
+    const bufferTrackWidth =
+      maximumValue === 0
+        ? 0
+        : (bufferValue / maximumValue) * containerSize.width;
     const bufferTrackStyle = {
       position: 'absolute',
       width: Animated.add(bufferTrackWidth, 0),
@@ -302,7 +303,7 @@ export default class SliderOP extends PureComponent {
           renderToHardwareTextureAndroid
           onLayout={this._measureTrack}
         />
-         <Animated.View
+        <Animated.View
           renderToHardwareTextureAndroid
           style={[mainStyles.track, trackStyle, bufferTrackStyle]}
         />
@@ -310,7 +311,7 @@ export default class SliderOP extends PureComponent {
           renderToHardwareTextureAndroid
           style={[mainStyles.track, trackStyle, minimumTrackStyle]}
         />
-       
+
         <Animated.View
           onLayout={this._measureThumb}
           renderToHardwareTextureAndroid

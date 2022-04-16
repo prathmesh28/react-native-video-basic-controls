@@ -51,7 +51,7 @@ const MediaControls = (props: Props) => {
     fadeOutDelay = 5000,
     isLoading = false,
     mainColor = 'rgba(12, 83, 175, 0.9)',
-    bufferColor= "#fff",
+    bufferColor = '#fff',
     onFullScreen,
     fullScreenIconP,
     fullScreenIconL,
@@ -113,12 +113,12 @@ const MediaControls = (props: Props) => {
   useEffect(() => {
     checkLocked();
     fadeOutControls(fadeOutDelay);
-  }, []);
+  });
 
   const fadeOutControls = (delay = 0) => {
     Animated.timing(opacity, {
       toValue: 0,
-      duration: 300,
+      duration: 30,
       delay,
       useNativeDriver: false,
     }).start((result) => {
@@ -130,15 +130,15 @@ const MediaControls = (props: Props) => {
     });
   };
 
-  const fadeInControls = (loop = true) => {
+  const fadeInControls = () => {
     setIsVisible(true);
     Animated.timing(opacity, {
       toValue: 1,
       duration: 300,
       delay: 0,
       useNativeDriver: false,
-    }).start(() => {
-      if (loop) {
+    }).start((result) => {
+      if (result.finished) {
         fadeOutControls(fadeOutDelay);
       }
     });
@@ -183,7 +183,7 @@ const MediaControls = (props: Props) => {
 
   const toggleControls = () => {
     // value is the last value of the animation when stop animation was called.
-    // As this is an opacity effect, I (Charlie) used the value (0 or 1) as a boolean
+    // As this is an opacity effect, I used the value (0 or 1) as a boolean
     opacity.stopAnimation((value: number) => {
       setIsVisible(!!value);
       return value ? fadeOutControls() : fadeInControls();
@@ -194,8 +194,7 @@ const MediaControls = (props: Props) => {
       <Animated.View
         style={[styles.container, customContainerStyle, { opacity }]}
       >
-
-      {isFullscreen&&<StatusBar hidden/>}
+        {isFullscreen && <StatusBar hidden />}
         {isVisible && (
           <View style={[styles.container, customContainerStyle]}>
             <View
@@ -215,16 +214,14 @@ const MediaControls = (props: Props) => {
               isLoading={isLoading}
               playerState={playerState}
               customIconStyle={iconStyle}
-            /> 
+            />
             <Slider
               progress={progress}
               duration={duration}
               bufferValue={bufferValue}
               mainColor={mainColor}
               bufferColor={bufferColor}
-              onFullScreen={
-                Boolean(onFullScreen) ? onFullScreen : onFullScreenFunction
-              }
+              onFullScreen={onFullScreen ? onFullScreen : onFullScreenFunction}
               isFullscreen={isFullscreen}
               fullScreenIconL={fullScreenIconL}
               fullScreenIconP={fullScreenIconP}
@@ -233,7 +230,6 @@ const MediaControls = (props: Props) => {
               onSeeking={onSeeking}
               onPause={onPause}
               customSliderStyle={sliderStyle}
-              
             />
           </View>
         )}
