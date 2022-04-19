@@ -46,6 +46,7 @@ export type Props = {
   VSliderInnerStyles?: ViewStyle;
   showVolume?: boolean;
   showBrightness?: boolean;
+  sliderScale?: number;
 };
 
 const MediaControls = (props: Props) => {
@@ -76,6 +77,7 @@ const MediaControls = (props: Props) => {
     VSliderInnerStyles,
     showVolume = false,
     showBrightness = false,
+    sliderScale = 10,
   } = props;
   const { initialOpacity, initialIsVisible } = (() => {
     if (showOnStart) {
@@ -281,7 +283,7 @@ const MediaControls = (props: Props) => {
                   SliderMaxStyles={VSliderOuterStyles}
                   SliderMinStyles={VSliderInnerStyles}
                   ballColor={mainColor}
-                  sliderScale={10}
+                  sliderScale={sliderScale}
                 />
               </View>
             )}
@@ -301,7 +303,7 @@ const MediaControls = (props: Props) => {
                   SliderMaxStyles={VSliderOuterStyles}
                   SliderMinStyles={VSliderInnerStyles}
                   ballColor={mainColor}
-                  sliderScale={10}
+                  sliderScale={sliderScale}
                 />
               </View>
             )}
