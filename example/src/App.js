@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, View } from 'react-native';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 import Video from 'react-native-video';
 import MediaControls, {
   PLAYER_STATES,
@@ -59,7 +59,7 @@ class App extends Component {
       return <View />;
     } else
       return (
-        <View on style={styles.container}>
+        <SafeAreaView on style={styles.container}>
           <View style={styles.videoStyle}>
             <Video
               id="video"
@@ -89,7 +89,8 @@ class App extends Component {
                   : null;
                 this.setState({ currentTime: data.currentTime });
               }}
-              controls={Platform.OS === 'android' ? false : true}
+              // controls={Platform.OS === 'android' ? false : true}
+              controls={false}
               paused={this.state.paused}
               onEnd={() => {
                 // this.setState({ playerState: PLAYER_STATES.ENDED })
@@ -107,50 +108,50 @@ class App extends Component {
                 this.setState({ error: e });
               }}
             />
-            {Platform.OS === 'android' && (
-              <MediaControls
-                bufferValue={this.state.bufferValue}
-                duration={this.state.duration}
-                isLoading={this.state.isLoading}
-                mainColor="#00DCCD"
-                // bufferColor=""
-                sliderStyle={{
-                  thumbStyle: {
-                    width: 12,
-                    height: 12,
-                  },
-                  trackStyle: {
-                    height: 2,
-                  },
-                }}
-                fullScreenIconP={
-                  <Icon name="fullscreen" size={20} color="#00DCCD" />
-                }
-                fullScreenIconL={
-                  <Icon name="fullscreen-exit" size={20} color="#00DCCD" />
-                }
-                onPaused={(itm) => this.onPaused(itm)}
-                onReplay={() => this.onReplay()}
-                onSeek={(itm) => this.onSeek(itm)}
-                onSeeking={(itm) => this.onSeeking(itm)}
-                playerState={this.state.playerState}
-                progress={this.state.currentTime}
-                onSkipFor={() =>
-                  this.videoPlayer.seek(this.state.currentTime + 5, 30)
-                }
-                onSkipBack={() =>
-                  this.videoPlayer.seek(this.state.currentTime - 5, 30)
-                }
-                showVolume={true}
-                showBrightness={true}
-                // VSliderOuterStyles={{}}
-                // VSliderInnerStyles={{}}
-              >
-                {/* <MediaControls.Toolbar></MediaControls.Toolbar> */}
-              </MediaControls>
-            )}
+            {/* {Platform.OS === 'android' && ( */}
+            <MediaControls
+              bufferValue={this.state.bufferValue}
+              duration={this.state.duration}
+              isLoading={this.state.isLoading}
+              mainColor="#00DCCD"
+              // bufferColor=""
+              sliderStyle={{
+                thumbStyle: {
+                  width: 12,
+                  height: 12,
+                },
+                trackStyle: {
+                  height: 2,
+                },
+              }}
+              fullScreenIconP={
+                <Icon name="fullscreen" size={20} color="#00DCCD" />
+              }
+              fullScreenIconL={
+                <Icon name="fullscreen-exit" size={20} color="#00DCCD" />
+              }
+              onPaused={(itm) => this.onPaused(itm)}
+              onReplay={() => this.onReplay()}
+              onSeek={(itm) => this.onSeek(itm)}
+              onSeeking={(itm) => this.onSeeking(itm)}
+              playerState={this.state.playerState}
+              progress={this.state.currentTime}
+              onSkipFor={() =>
+                this.videoPlayer.seek(this.state.currentTime + 5, 30)
+              }
+              onSkipBack={() =>
+                this.videoPlayer.seek(this.state.currentTime - 5, 30)
+              }
+              showVolume={true}
+              showBrightness={true}
+              // VSliderOuterStyles={{}}
+              // VSliderInnerStyles={{}}
+            >
+              {/* <MediaControls.Toolbar></MediaControls.Toolbar> */}
+            </MediaControls>
+            {/* )} */}
           </View>
-        </View>
+        </SafeAreaView>
       );
   }
 }

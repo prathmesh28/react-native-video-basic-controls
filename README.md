@@ -2,6 +2,13 @@
 React native video controls.
 Controls for the [react-native-video](https://github.com/react-native-video/react-native-video) component with full screen support for android.
 
+## Features
+ - full screen support
+ - volume control
+ - brightness contol
+ - seek forword and back button
+ - slider customisation
+
 ## Installation
 
 ```sh
