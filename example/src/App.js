@@ -5,6 +5,7 @@ import MediaControls, {
   PLAYER_STATES,
 } from 'react-native-video-basic-controls';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
 class App extends Component {
   state = {
     buffer: false,
@@ -58,7 +59,7 @@ class App extends Component {
       return <View />;
     } else
       return (
-        <View style={styles.container}>
+        <View on style={styles.container}>
           <View style={styles.videoStyle}>
             <Video
               id="video"
@@ -123,10 +124,10 @@ class App extends Component {
                   },
                 }}
                 fullScreenIconP={
-                  <Icon name="fullscreen" size={20} color="#fff" />
+                  <Icon name="fullscreen" size={20} color="#00DCCD" />
                 }
                 fullScreenIconL={
-                  <Icon name="fullscreen-exit" size={20} color="#fff" />
+                  <Icon name="fullscreen-exit" size={20} color="#00DCCD" />
                 }
                 onPaused={(itm) => this.onPaused(itm)}
                 onReplay={() => this.onReplay()}
@@ -140,6 +141,10 @@ class App extends Component {
                 onSkipBack={() =>
                   this.videoPlayer.seek(this.state.currentTime - 5, 30)
                 }
+                showVolume={true}
+                showBrightness={true}
+                // VSliderOuterStyles={{}}
+                // VSliderInnerStyles={{}}
               >
                 {/* <MediaControls.Toolbar></MediaControls.Toolbar> */}
               </MediaControls>

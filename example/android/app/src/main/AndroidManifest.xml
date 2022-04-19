@@ -2,7 +2,8 @@
   package="com.example.reactnativevideocontrols">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+<!-- setBrightness() & setScreenMode() & saveBrightness() -->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"

@@ -46,8 +46,8 @@ const Controls = (props: ControlsProps) => {
         <TouchableOpacity
           style={[styles.playButton, CstmIconStyles]}
           onPress={onSkipBack}
-          accessibilityLabel={'Tap to skip back'}
-          accessibilityHint={'skip back 10 sec'}
+          accessibilityLabel={'skip back/ change track'}
+          accessibilityHint={'skip back/ change track'}
         >
           <Image source={backwardIcon} style={styles.playIcon} />
         </TouchableOpacity>
@@ -66,8 +66,8 @@ const Controls = (props: ControlsProps) => {
         <TouchableOpacity
           style={[styles.playButton, CstmIconStyles]}
           onPress={onSkipFor}
-          accessibilityLabel={'Tap to skip forward'}
-          accessibilityHint={'skip forward 10 sec'}
+          accessibilityLabel={'skip forward/ change track'}
+          accessibilityHint={'skip forward/ change track'}
         >
           <Image source={forwardIcon} style={styles.playIcon} />
         </TouchableOpacity>

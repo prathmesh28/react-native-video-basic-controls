@@ -22,7 +22,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'stretch',
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     flexDirection: 'row',
   },
   fullScreenContainer: {
@@ -89,5 +89,21 @@ export default StyleSheet.create({
   track: {
     borderRadius: 1,
     height: 5,
+  },
+  VSliderLeft: {
+    position: 'absolute',
+    top: 10,
+    bottom: 10,
+    left: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  VSliderRight: {
+    position: 'absolute',
+    top: 10,
+    bottom: 10,
+    right: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
