@@ -144,7 +144,7 @@ const MediaControls = (props: Props) => {
       setVolume(data.value);
     });
     return () => SystemSetting.removeVolumeListener(volumeListener);
-  });
+  },[]);
 
   const onVolumeChange = (value: number) => {
     SystemSetting.setVolume(value);
@@ -225,6 +225,7 @@ const MediaControls = (props: Props) => {
       return value ? fadeOutControls() : fadeInControls();
     });
   };
+  
   return (
     <TouchableWithoutFeedback accessible={false} onPress={toggleControls}>
       <Animated.View

@@ -156,7 +156,6 @@
     ]
   },
   "dependencies": {
-    "babel-transform-js-to-jsx": "^2.1.0",
     "react-native-gesture-handler": "^2.4.0",
     "react-native-orientation-locker": "^1.4.0",
     "react-native-system-setting": "^1.7.6"
