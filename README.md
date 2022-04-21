@@ -6,7 +6,7 @@ Controls for the [react-native-video](https://github.com/react-native-video/reac
 ## Features
 
 - Full screen support.
-- Volume and brightness control.
+- Change volume and brightness with Swipe/ Slider controls.
 - Seek forword and back button.
 - Slider customisation.
 
