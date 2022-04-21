@@ -18,6 +18,7 @@ import Orientation, {
 } from 'react-native-orientation-locker';
 import SystemSetting from 'react-native-system-setting';
 import VerticalSlider from './VerticalSlider';
+
 export type Props = {
   children: React.ReactNode;
   containerStyle: ViewStyle;
@@ -47,6 +48,7 @@ export type Props = {
   showVolume?: boolean;
   showBrightness?: boolean;
   sliderScale?: number;
+  sliderType?: 'Slider' | 'Swipe';
 };
 
 const MediaControls = (props: Props) => {
@@ -78,6 +80,7 @@ const MediaControls = (props: Props) => {
     showVolume = false,
     showBrightness = false,
     sliderScale = 10,
+    sliderType = 'Slider',
   } = props;
   const { initialOpacity, initialIsVisible } = (() => {
     if (showOnStart) {
@@ -94,7 +97,6 @@ const MediaControls = (props: Props) => {
   })();
 
   const [isFullscreen, setIsFullscreen] = useState(false);
-
   const [opacity] = useState(new Animated.Value(initialOpacity));
   const [isVisible, setIsVisible] = useState(initialIsVisible);
   const [isLocked, setLocked] = useState(false);
@@ -144,7 +146,7 @@ const MediaControls = (props: Props) => {
       setVolume(data.value);
     });
     return () => SystemSetting.removeVolumeListener(volumeListener);
-  },[]);
+  }, []);
 
   const onVolumeChange = (value: number) => {
     SystemSetting.setVolume(value);
@@ -225,7 +227,7 @@ const MediaControls = (props: Props) => {
       return value ? fadeOutControls() : fadeInControls();
     });
   };
-  
+
   return (
     <TouchableWithoutFeedback accessible={false} onPress={toggleControls}>
       <Animated.View
@@ -244,6 +246,13 @@ const MediaControls = (props: Props) => {
               {children}
             </View>
             <Controls
+              brightness={brightness}
+              volume={volume}
+              showBrightness={showBrightness}
+              showVolume={showVolume}
+              onBrightness={onBrightnessChange}
+              onVolume={onVolumeChange}
+              showSlider={sliderType === 'Swipe'?true:false}
               onPause={onPause}
               onReplay={onReplay}
               onSkipFor={onSkipFor}
@@ -268,45 +277,49 @@ const MediaControls = (props: Props) => {
               onPause={onPause}
               customSliderStyle={sliderStyle}
             />
-            {showBrightness && (
-              <View style={styles.VSliderLeft}>
-                <VerticalSlider
-                  value={brightness}
-                  disabled={false}
-                  min={0}
-                  max={1}
-                  step={0.01}
-                  onChange={onBrightnessChange}
-                  onComplete={onBrightnessChange}
-                  width={4}
-                  height={200}
-                  borderRadius={50}
-                  SliderMaxStyles={VSliderOuterStyles}
-                  SliderMinStyles={VSliderInnerStyles}
-                  ballColor={mainColor}
-                  sliderScale={sliderScale}
-                />
-              </View>
-            )}
-            {showVolume && (
-              <View style={styles.VSliderRight}>
-                <VerticalSlider
-                  value={volume}
-                  disabled={false}
-                  min={0}
-                  max={1}
-                  step={0.01}
-                  onChange={onVolumeChange}
-                  onComplete={onVolumeChange}
-                  width={4}
-                  height={200}
-                  borderRadius={50}
-                  SliderMaxStyles={VSliderOuterStyles}
-                  SliderMinStyles={VSliderInnerStyles}
-                  ballColor={mainColor}
-                  sliderScale={sliderScale}
-                />
-              </View>
+            {sliderType === 'Slider' && (
+              <>
+                {showBrightness && (
+                  <View style={styles.VSliderLeft}>
+                    <VerticalSlider
+                      value={brightness}
+                      disabled={false}
+                      min={0}
+                      max={1}
+                      step={0.01}
+                      onChange={onBrightnessChange}
+                      onComplete={onBrightnessChange}
+                      width={4}
+                      height={200}
+                      borderRadius={50}
+                      SliderMaxStyles={VSliderOuterStyles}
+                      SliderMinStyles={VSliderInnerStyles}
+                      ballColor={mainColor}
+                      sliderScale={sliderScale}
+                    />
+                  </View>
+                )}
+                {showVolume && (
+                  <View style={styles.VSliderRight}>
+                    <VerticalSlider
+                      value={volume}
+                      disabled={false}
+                      min={0}
+                      max={1}
+                      step={0.01}
+                      onChange={onVolumeChange}
+                      onComplete={onVolumeChange}
+                      width={4}
+                      height={200}
+                      borderRadius={50}
+                      SliderMaxStyles={VSliderOuterStyles}
+                      SliderMinStyles={VSliderInnerStyles}
+                      ballColor={mainColor}
+                      sliderScale={sliderScale}
+                    />
+                  </View>
+                )}
+              </>
             )}
           </View>
         )}

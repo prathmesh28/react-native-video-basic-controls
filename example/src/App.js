@@ -144,8 +144,9 @@ class App extends Component {
               }
               showVolume={true}
               showBrightness={true}
-              // VSliderOuterStyles={{}}
+              // VSliderOuterStyles={{marginHorizontal:40}}
               // VSliderInnerStyles={{}}
+              sliderType="Swipe"
             >
               {/* <MediaControls.Toolbar></MediaControls.Toolbar> */}
             </MediaControls>

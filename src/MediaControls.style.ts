@@ -36,6 +36,8 @@ export default StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     width: 50,
+    borderRadius:50,
+    // backgroundColor:'grey'
   },
   playIcon: {
     height: 22,
@@ -106,4 +108,13 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  swipeSlider: {
+    flex: 1,
+    backgroundColor: '#000',
+    height: '100%',
+    width: '100%',
+  },
+  playerButt: {
+    flex: 1, alignItems: 'center'
+  }
 });

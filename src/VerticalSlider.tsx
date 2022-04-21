@@ -45,7 +45,11 @@ export default class VerticalSlider extends React.Component<props, state> {
 
     let panResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
-      onMoveShouldSetPanResponder: () => false,
+      onMoveShouldSetPanResponder: () => true,
+      // onMoveShouldSetPanResponderCapture: (_event: GestureResponderEvent,
+      //   gestureState: PanResponderGestureState)=>{
+      //     console.log(gestureState)
+      //   },
       onPanResponderStart: () => {
         Animated.spring(this.state.sliderWidth, {
           toValue: this.props.width + this.props.sliderScale,
@@ -66,6 +70,7 @@ export default class VerticalSlider extends React.Component<props, state> {
         if (this.props.disabled) {
           return;
         }
+        // console.log(_event, gestureState);
         const value = this._fetchNewValueFromGesture(gestureState);
         this._changeState(value);
         if (this.props.onChange) {
@@ -109,6 +114,7 @@ export default class VerticalSlider extends React.Component<props, state> {
           this.props.onComplete(value);
         }
       },
+      // onMoveShouldSetPanResponderCapture
     });
 
     this.state = {
@@ -186,7 +192,7 @@ export default class VerticalSlider extends React.Component<props, state> {
     const y = Animated.divide(ballSize, new Animated.Value(2));
     const ballBottom = Animated.subtract(this.state.sliderHeight, y);
     return (
-      <View style={{ marginHorizontal: sliderScale }}>
+      <View style={[{ marginHorizontal: sliderScale },SliderMaxStyles]}>
         <Animated.View
           style={[
             styles.container,
@@ -195,7 +201,7 @@ export default class VerticalSlider extends React.Component<props, state> {
               height,
               borderRadius,
             },
-            SliderMaxStyles,
+            // SliderMaxStyles,
           ]}
           {...this.state.panResponder.panHandlers}
         >
@@ -223,6 +229,7 @@ export default class VerticalSlider extends React.Component<props, state> {
               bottom: ballBottom,
               left: -(sliderScale / 2),
             },
+            // SliderMaxStyles
           ]}
           {...this.state.panResponder.panHandlers}
         />
