@@ -252,7 +252,7 @@ const MediaControls = (props: Props) => {
               showVolume={showVolume}
               onBrightness={onBrightnessChange}
               onVolume={onVolumeChange}
-              showSlider={sliderType === 'Swipe'?true:false}
+              showSlider={sliderType === 'Swipe' ? true : false}
               onPause={onPause}
               onReplay={onReplay}
               onSkipFor={onSkipFor}

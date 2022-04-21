@@ -102,7 +102,7 @@ const Controls = (props: ControlsProps) => {
       <View
         style={styles.swipeSlider}
         {...(showSlider ? _panResponderBright.panHandlers : null)}
-      ></View>
+      />
       <View style={styles.playerButt}>
         {(Boolean(onSkipBack) || Boolean(onSkipFor)) && (
           <TouchableHighlight
@@ -148,7 +148,7 @@ const Controls = (props: ControlsProps) => {
       <View
         style={styles.swipeSlider}
         {...(showSlider ? _panResponderVol.panHandlers : null)}
-      ></View>
+      />
     </>
   );
 

@@ -26,7 +26,7 @@ interface props {
   step?: number;
   animationDuration?: number;
   sliderScale: number;
-  ballColor: String;
+  ballColor: string;
 }
 
 interface state {
@@ -192,7 +192,7 @@ export default class VerticalSlider extends React.Component<props, state> {
     const y = Animated.divide(ballSize, new Animated.Value(2));
     const ballBottom = Animated.subtract(this.state.sliderHeight, y);
     return (
-      <View style={[{ marginHorizontal: sliderScale },SliderMaxStyles]}>
+      <View style={[{ marginHorizontal: sliderScale }, SliderMaxStyles]}>
         <Animated.View
           style={[
             styles.container,

@@ -36,7 +36,7 @@ export default StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     width: 50,
-    borderRadius:50,
+    borderRadius: 50,
     // backgroundColor:'grey'
   },
   playIcon: {
@@ -115,6 +115,7 @@ export default StyleSheet.create({
     width: '100%',
   },
   playerButt: {
-    flex: 1, alignItems: 'center'
-  }
+    flex: 1,
+    alignItems: 'center',
+  },
 });
