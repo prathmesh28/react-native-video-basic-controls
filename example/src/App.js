@@ -113,11 +113,11 @@ class App extends Component {
               bufferValue={this.state.bufferValue}
               duration={this.state.duration}
               isLoading={this.state.isLoading}
-              mainColor="#00DCCD"
+              mainColor="red"
               // bufferColor=""
               sliderStyle={{
                 thumbStyle: {
-                  width: 12,
+                  width: 10,
                   height: 12,
                 },
                 trackStyle: {
@@ -125,10 +125,10 @@ class App extends Component {
                 },
               }}
               fullScreenIconP={
-                <Icon name="fullscreen" size={20} color="#00DCCD" />
+                <Icon name="fullscreen" size={20} color="red" />
               }
               fullScreenIconL={
-                <Icon name="fullscreen-exit" size={20} color="#00DCCD" />
+                <Icon name="fullscreen-exit" size={20} color="red" />
               }
               onPaused={(itm) => this.onPaused(itm)}
               onReplay={() => this.onReplay()}

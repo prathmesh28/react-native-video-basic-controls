@@ -9,6 +9,7 @@ Controls for the [react-native-video](https://github.com/react-native-video/reac
 - Change volume and brightness with Swipe/ Slider controls.
 - Seek forword and back button.
 - Slider customisation.
+- Swipe controls left-side brightness & right-side volume.
 
 ## Installation
 
@@ -100,21 +101,21 @@ Refer to [example](https://github.com/prathmesh28/react-native-video-basic-contr
 
 ### Other Props
 
-| Prop            | Type      | Optional | Default | Description                                                                  |
-| --------------- | --------- | -------- | ------- | ---------------------------------------------------------------------------- |
-| isLoading       | boolean   | Yes      | false   | When is loading (displays loading icon).                                     |
-| fadeOutDelay    | number    | Yes      | 5000    | Allows to customize the delay between fade in and fade out transition.       |
-| onFullScreen    | function  | Yes      |         | Custom fullscreen function, triggered when the fullscreen button is pressed. |
-| showOnStart     | boolean   | Yes      | true    | controls the visibility of the controls during the initial render.           |
-| fullScreenIconL | component | Yes      |         | Fullscreen icon (landscape mode).                                            |
-| fullScreenIconP | component | Yes      |         | Fullscreen icon (Portrait mode).                                             |
-| bufferValue     | number    | Yes      |         | Add buffer value to Slider.                                                  |
-| onSkipFor       | String    | Yes      |         | To seek forward.                                                             |
-| onSkipBack      | String    | Yes      |         | To seek back.                                                                |
-| showVolume      | boolean   | Yes      | false   | Show Volume controls.                                                        |
-| showBrightness  | boolean   | Yes      | false   | Show Brightness controls.                                                    |
-| sliderScale     | number    | Yes      | 10      | Scale brightness/ volume slider on press.                                    |
-| sliderType      | String    | Yes      | 'Slider | Select brightness/ volume slider type(Slider/swipe).                         |
+| Prop            | Type      | Optional | Default  | Description                                                                  |
+| --------------- | --------- | -------- | -------- | ---------------------------------------------------------------------------- |
+| isLoading       | boolean   | Yes      | false    | When is loading (displays loading icon).                                     |
+| fadeOutDelay    | number    | Yes      | 5000     | Allows to customize the delay between fade in and fade out transition.       |
+| onFullScreen    | function  | Yes      |          | Custom fullscreen function, triggered when the fullscreen button is pressed. |
+| showOnStart     | boolean   | Yes      | true     | controls the visibility of the controls during the initial render.           |
+| fullScreenIconL | component | Yes      |          | Fullscreen icon (landscape mode).                                            |
+| fullScreenIconP | component | Yes      |          | Fullscreen icon (Portrait mode).                                             |
+| bufferValue     | number    | Yes      |          | Add buffer value to Slider.                                                  |
+| onSkipFor       | String    | Yes      |          | To seek forward.                                                             |
+| onSkipBack      | String    | Yes      |          | To seek back.                                                                |
+| showVolume      | boolean   | Yes      | false    | Show Volume controls.                                                        |
+| showBrightness  | boolean   | Yes      | false    | Show Brightness controls.                                                    |
+| sliderScale     | number    | Yes      | 10       | Scale brightness/ volume slider on press.                                    |
+| sliderType      | String    | Yes      | 'Slider' | Select brightness/ volume slider type(Slider/swipe).                         |
 
 ### Style Props
 
