@@ -46,10 +46,6 @@ export default class VerticalSlider extends React.Component<props, state> {
     let panResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onMoveShouldSetPanResponder: () => true,
-      // onMoveShouldSetPanResponderCapture: (_event: GestureResponderEvent,
-      //   gestureState: PanResponderGestureState)=>{
-      //     console.log(gestureState)
-      //   },
       onPanResponderStart: () => {
         Animated.spring(this.state.sliderWidth, {
           toValue: this.props.width + this.props.sliderScale,
@@ -70,7 +66,6 @@ export default class VerticalSlider extends React.Component<props, state> {
         if (this.props.disabled) {
           return;
         }
-        // console.log(_event, gestureState);
         const value = this._fetchNewValueFromGesture(gestureState);
         this._changeState(value);
         if (this.props.onChange) {

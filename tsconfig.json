@@ -25,5 +25,19 @@
     "target": "esnext",
     "allowJs": true,
   },
-  "exclude": ["*.config.js"]
+  "include": [
+    "./**/*"
+  ],
+  // "exclude": ["node_modules"]
+  "exclude": [
+    "./plugins/**/*",
+    "./typings/**/*",
+    "./built/**/*",
+    "./**/*.js",
+    "node_modules", 
+    "build", 
+    "dist", 
+    "src/**/*.js", 
+    "src/**/*.jsx"
+  ]
 }
