@@ -1,6 +1,6 @@
 {
   "name": "react-native-video-basic-controls",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "description": "Controls for the React Native <Video> component at react-native-video.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -63,7 +63,7 @@
     "@release-it/conventional-changelog": "^2.0.0",
     "@types/jest": "^26.0.0",
     "@types/react": "^16.9.19",
-    "@types/react-native": "0.62.13",
+    "@types/react-native": "^0.69.3",
     "commitlint": "^11.0.0",
     "eslint": "^7.2.0",
     "eslint-config-prettier": "^7.0.0",
@@ -159,6 +159,7 @@
     "@types/react-native-video": "^5.0.13",
     "react-native-gesture-handler": "^2.4.0",
     "react-native-orientation-locker": "^1.4.0",
+    "react-native-reanimated": "^2.9.1",
     "react-native-system-setting": "^1.7.6"
   }
 }

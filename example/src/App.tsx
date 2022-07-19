@@ -106,7 +106,7 @@ class App extends React.Component<props, state> {
                   : null;
                 this.setState({ currentTime: data.currentTime });
               }}
-              controls={Platform.OS === 'ios' ? false : true}
+              controls={Platform.OS === 'ios' ? true : false}
               paused={this.state.paused}
               onEnd={() => {
                 // this.setState({ playerState: PLAYER_STATES.ENDED })

@@ -6,6 +6,7 @@ import {
   GestureResponderEvent,
   ViewStyle,
   StatusBar,
+  LogBox,
 } from 'react-native';
 import styles from './MediaControls.style';
 import { PLAYER_STATES } from './constants/playerStates';
@@ -64,9 +65,10 @@ const MediaControls = (props: Props) => {
     onFullScreen,
     fullScreenIconP,
     fullScreenIconL,
-    onReplay: onReplayCallback,
-    onSkipFor,
-    onSkipBack,
+    // onReplay=()=>{},
+    onReplay: onReplayCallback = () => {},
+    onSkipFor = () => {},
+    onSkipBack = () => {},
     onSeek,
     onSeeking,
     playerState,
@@ -127,6 +129,7 @@ const MediaControls = (props: Props) => {
   }
 
   useEffect(() => {
+    LogBox.ignoreAllLogs();
     SystemSetting.getVolume().then((vol) => {
       setVolume(vol);
     });

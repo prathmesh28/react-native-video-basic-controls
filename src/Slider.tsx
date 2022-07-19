@@ -21,10 +21,10 @@ type Props = Pick<
   | 'onFullScreen'
   | 'playerState'
   | 'onSeek'
-  | 'onSeeking'
   | 'fullScreenIconL'
   | 'fullScreenIconP'
 > & {
+  onSeeking?: (value: number) => void;
   onPause: () => void;
   customSliderStyle?: CustomSliderStyle;
   isFullscreen: Boolean;
@@ -52,7 +52,7 @@ const Slider = (props: Props) => {
   const customThumbStyle = customSliderStyle?.thumbStyle || {};
 
   const dragging = (value: number) => {
-    const { onSeeking, playerState } = props;
+    const { onSeeking = () => {}, playerState } = props;
     onSeeking(value);
 
     if (playerState === PLAYER_STATES.PAUSED) {
