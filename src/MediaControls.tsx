@@ -130,12 +130,18 @@ const MediaControls = (props: Props) => {
 
   useEffect(() => {
     LogBox.ignoreAllLogs();
-    if (SystemSetting.getVolume !== undefined) {
+    if (
+      SystemSetting.getVolume !== undefined ||
+      SystemSetting.getVolume !== null
+    ) {
       SystemSetting.getVolume().then((vol) => {
         setVolume(vol);
       });
     }
-    if (SystemSetting.getBrightness !== undefined) {
+    if (
+      SystemSetting.getBrightness !== undefined ||
+      SystemSetting.getBrightness !== null
+    ) {
       SystemSetting.getBrightness().then((bright) => {
         setBrightness(bright);
       });
