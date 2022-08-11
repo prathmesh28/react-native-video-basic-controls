@@ -104,7 +104,7 @@ const Controls = (props: ControlsProps) => {
         {...(showSlider ? _panResponderBright.panHandlers : null)}
       />
       <View style={styles.playerButt}>
-        {(Boolean(onSkipBack) || Boolean(onSkipFor)) && (
+        {(Boolean(onSkipBack.name) || Boolean(onSkipFor.name)) && (
           <TouchableHighlight
             activeOpacity={0.6}
             underlayColor={'#ffffff4d'}
@@ -132,7 +132,7 @@ const Controls = (props: ControlsProps) => {
         </TouchableHighlight>
       </View>
       <View style={styles.playerButt}>
-        {(Boolean(onSkipBack) || Boolean(onSkipFor)) && (
+        {(Boolean(onSkipBack.name) || Boolean(onSkipFor.name)) && (
           <TouchableHighlight
             activeOpacity={0.6}
             underlayColor={'#ffffff4d'}

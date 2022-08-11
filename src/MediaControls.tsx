@@ -130,12 +130,16 @@ const MediaControls = (props: Props) => {
 
   useEffect(() => {
     LogBox.ignoreAllLogs();
-    SystemSetting.getVolume().then((vol) => {
-      setVolume(vol);
-    });
-    SystemSetting.getBrightness().then((bright) => {
-      setBrightness(bright);
-    });
+    if (SystemSetting.getVolume !== undefined) {
+      SystemSetting.getVolume().then((vol) => {
+        setVolume(vol);
+      });
+    }
+    if (SystemSetting.getBrightness !== undefined) {
+      SystemSetting.getBrightness().then((bright) => {
+        setBrightness(bright);
+      });
+    }
     Orientation.getOrientation((o) => {
       if (o === 'PORTRAIT') {
         setIsFullscreen(false);
@@ -255,7 +259,7 @@ const MediaControls = (props: Props) => {
               showVolume={showVolume}
               onBrightness={onBrightnessChange}
               onVolume={onVolumeChange}
-              showSlider={sliderType === 'Swipe' ? true : false}
+              showSlider={isFullscreen && sliderType === 'Swipe'}
               onPause={onPause}
               onReplay={onReplay}
               onSkipFor={onSkipFor}
@@ -280,7 +284,7 @@ const MediaControls = (props: Props) => {
               onPause={onPause}
               customSliderStyle={sliderStyle}
             />
-            {sliderType === 'Slider' && (
+            {isFullscreen && sliderType === 'Slider' && (
               <>
                 {showBrightness && (
                   <View style={styles.VSliderLeft}>

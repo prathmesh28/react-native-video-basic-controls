@@ -42,7 +42,7 @@ class App extends React.Component<props, state> {
       duration: 0,
       bufferValue: 0,
       isLoading: true,
-      paused: true,
+      paused: false,
       playerState: PLAYER_STATES.PAUSED,
       fullscreen: false,
     };
@@ -121,7 +121,7 @@ class App extends React.Component<props, state> {
                 this.setState({ buffer: e.isBuffering });
               }}
               onError={(e) => {
-                console.log(e);
+                // console.log(e);
                 // this.setState({ error: e });
               }}
             />
@@ -154,12 +154,12 @@ class App extends React.Component<props, state> {
                 onSeeking={(itm) => this.onSeeking(itm)}
                 playerState={this.state.playerState}
                 progress={this.state.currentTime}
-                onSkipFor={() =>
-                  this.videoPlayer.current?.seek(this.state.currentTime + 5, 30)
-                }
-                onSkipBack={() =>
-                  this.videoPlayer.current?.seek(this.state.currentTime - 5, 30)
-                }
+                // onSkipFor={() =>
+                //   this.videoPlayer.current?.seek(this.state.currentTime + 5, 30)
+                // } 
+                // onSkipBack={() =>
+                //   this.videoPlayer.current?.seek(this.state.currentTime - 5, 30)
+                // }
                 showVolume={true}
                 showBrightness={true}
                 // VSliderOuterStyles={{marginHorizontal:40}}
