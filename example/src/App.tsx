@@ -156,17 +156,17 @@ class App extends React.Component<props, state> {
                 progress={this.state.currentTime}
                 // onSkipFor={() =>
                 //   this.videoPlayer.current?.seek(this.state.currentTime + 5, 30)
-                // } 
+                // }
                 // onSkipBack={() =>
                 //   this.videoPlayer.current?.seek(this.state.currentTime - 5, 30)
                 // }
-                // showVolume={true}
-                // showBrightness={true}
-                 // sliderType="Swipe"
+                showVolume={true}
+                showBrightness={true}
+                sliderType="Slider"
                 // VSliderOuterStyles={{marginHorizontal:40}}
                 // VSliderInnerStyles={{}}
                 // onFullScreen={Platform.OS==="ios"?()=>{}:null}
-               
+
                 // sliderScale
               >
                 {/* <MediaControls.Toolbar></MediaControls.Toolbar> */}

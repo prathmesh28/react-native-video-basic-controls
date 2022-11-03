@@ -1,5 +1,5 @@
 {
-  "name": "react-native-video-basic-controls",
+  "name": "@prathmesh28/react-native-video-basic-controls",
   "version": "0.1.13",
   "description": "Controls for the React Native <Video> component at react-native-video.",
   "main": "lib/commonjs/index",
@@ -55,7 +55,7 @@
   },
   "homepage": "https://github.com/prathmesh28/react-native-video-basic-controls#readme",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "@prathmesh28:registry": "https://npm.pkg.github.com"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^11.0.0",
