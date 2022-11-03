@@ -55,7 +55,7 @@
   },
   "homepage": "https://github.com/prathmesh28/react-native-video-basic-controls#readme",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://npm.pkg.github.com"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^11.0.0",
