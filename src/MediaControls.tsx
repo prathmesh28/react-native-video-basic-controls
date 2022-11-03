@@ -17,7 +17,11 @@ import Orientation, {
   useOrientationChange,
   useLockListener,
 } from 'react-native-orientation-locker';
+
 import SystemSetting from 'react-native-system-setting';
+let SystemSettings = require('react-native-system-setting')
+  ? SystemSetting
+  : null;
 import VerticalSlider from './VerticalSlider';
 
 export type Props = {
@@ -104,6 +108,7 @@ const MediaControls = (props: Props) => {
   const [isLocked, setLocked] = useState(false);
   const [volume, setVolume] = useState(0);
   const [brightness, setBrightness] = useState(0);
+  const [isChild, setIsChild] = useState(false);
 
   useOrientationChange((o: string) => {
     if (o === 'PORTRAIT') {
@@ -130,19 +135,13 @@ const MediaControls = (props: Props) => {
 
   useEffect(() => {
     LogBox.ignoreAllLogs();
-    if (
-      SystemSetting.getVolume !== undefined ||
-      SystemSetting.getVolume !== null
-    ) {
-      SystemSetting.getVolume().then((vol) => {
-        setVolume(vol);
-      });
+    if (children === undefined || children === null) {
+      setIsChild(false);
+    } else {
+      setIsChild(true);
     }
-    if (
-      SystemSetting.getBrightness !== undefined ||
-      SystemSetting.getBrightness !== null
-    ) {
-      SystemSetting.getBrightness().then((bright) => {
+    if (showBrightness) {
+      SystemSettings?.getBrightness().then((bright) => {
         setBrightness(bright);
       });
     }
@@ -153,20 +152,26 @@ const MediaControls = (props: Props) => {
         setIsFullscreen(true);
       }
     });
-    checkLocked();
-    fadeOutControls(fadeOutDelay);
-    const volumeListener = SystemSetting.addVolumeListener((data) => {
+    if (showVolume) {
+      SystemSettings?.getVolume()?.then((vol) => {
+        setVolume(vol);
+      });
+    }
+    const volumeListener = SystemSettings?.addVolumeListener((data) => {
       setVolume(data.value);
     });
-    return () => SystemSetting.removeVolumeListener(volumeListener);
+
+    checkLocked();
+    fadeOutControls(fadeOutDelay);
+    return () => SystemSettings?.removeVolumeListener(volumeListener);
   }, []);
 
   const onVolumeChange = (value: number) => {
-    SystemSetting.setVolume(value);
+    SystemSettings?.setVolume(value);
     volume !== value ? setVolume(value) : null;
   };
   const onBrightnessChange = (value: number) => {
-    SystemSetting.setAppBrightness(value);
+    SystemSettings?.setAppBrightness(value);
     volume !== value ? setBrightness(value) : null;
   };
 
@@ -251,7 +256,7 @@ const MediaControls = (props: Props) => {
           <View style={[styles.container, customContainerStyle]}>
             <View
               style={[
-                styles.controlsRow,
+                { ...styles.controlsRow, flex: isChild ? 1 : 0.5 },
                 styles.toolbarRow,
                 customToolbarStyle,
               ]}
@@ -259,6 +264,7 @@ const MediaControls = (props: Props) => {
               {children}
             </View>
             <Controls
+              isChild={isChild}
               brightness={brightness}
               volume={volume}
               showBrightness={showBrightness}

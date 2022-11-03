@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   ActivityIndicator,
@@ -9,6 +9,7 @@ import {
   GestureResponderEvent,
   PanResponderGestureState,
   Dimensions,
+  Text,
 } from 'react-native';
 import styles from './MediaControls.style';
 import { getPlayerStateIcon } from './utils';
@@ -31,6 +32,7 @@ type ControlsProps = Pick<Props, 'isLoading' | 'playerState' | 'onReplay'> & {
   showSlider: boolean;
   showBrightness: boolean;
   showVolume: boolean;
+  isChild: boolean;
 };
 
 const Controls = (props: ControlsProps) => {
@@ -49,14 +51,24 @@ const Controls = (props: ControlsProps) => {
     showBrightness,
     showVolume,
     showSlider,
+    isChild = false,
   } = props;
   const icon = getPlayerStateIcon(playerState);
   const forwardIcon = require('./assets/ic_forward.png');
   const backwardIcon = require('./assets/ic_backward.png');
 
+  const [brightnessSwiper, showBrightnessSwiper] = useState(false);
+  const [volumeSwiper, showVolumeSwiper] = useState(false);
+
   const pressAction = playerState === PLAYER_STATES.ENDED ? onReplay : onPause;
 
   const _panResponderBright = PanResponder.create({
+    onPanResponderStart: () => {
+      showBrightnessSwiper(true);
+    },
+    onPanResponderEnd: () => {
+      showBrightnessSwiper(false);
+    },
     onStartShouldSetPanResponder: () => showBrightness,
     onPanResponderMove: (
       _event: GestureResponderEvent,
@@ -67,6 +79,12 @@ const Controls = (props: ControlsProps) => {
     onPanResponderTerminationRequest: () => showBrightness,
   });
   const _panResponderVol = PanResponder.create({
+    onPanResponderStart: () => {
+      showVolumeSwiper(true);
+    },
+    onPanResponderEnd: () => {
+      showVolumeSwiper(false);
+    },
     onStartShouldSetPanResponder: () => showVolume,
     onPanResponderMove: (
       _event: GestureResponderEvent,
@@ -100,9 +118,22 @@ const Controls = (props: ControlsProps) => {
   ) : (
     <>
       <View
-        style={styles.swipeSlider}
+        style={{
+          ...styles.swipeSlider,
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: brightnessSwiper
+            ? 'rgba(0,0,0,' + brightness + ')'
+            : 'transparent',
+        }}
         {...(showSlider ? _panResponderBright.panHandlers : null)}
-      />
+      >
+        {brightnessSwiper && (
+          <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 18 }}>
+            {(brightness * 100).toFixed(1)}%
+          </Text>
+        )}
+      </View>
       <View style={styles.playerButt}>
         {(Boolean(onSkipBack.name) || Boolean(onSkipFor.name)) && (
           <TouchableHighlight
@@ -146,13 +177,30 @@ const Controls = (props: ControlsProps) => {
         )}
       </View>
       <View
-        style={styles.swipeSlider}
+        style={{
+          ...styles.swipeSlider,
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: volumeSwiper
+            ? 'rgba(0,0,0,' + volume + ')'
+            : 'transparent',
+        }}
         {...(showSlider ? _panResponderVol.panHandlers : null)}
-      />
+      >
+        {volumeSwiper && (
+          <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 18 }}>
+            {(volume * 100).toFixed(1)}%
+          </Text>
+        )}
+      </View>
     </>
   );
 
-  return <View style={[styles.controlsRow]}>{content}</View>;
+  return (
+    <View style={{ ...styles.controlsRow, flex: isChild ? 1 : 2 }}>
+      {content}
+    </View>
+  );
 };
 
 export { Controls };

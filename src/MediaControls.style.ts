@@ -110,7 +110,8 @@ export default StyleSheet.create({
   },
   swipeSlider: {
     flex: 1,
-    backgroundColor: 'transparent',
+    // backgroundColor: 'transparent',
+    // backgroundColor: '#000',
     height: '100%',
     width: '100%',
   },

@@ -42,7 +42,7 @@ class App extends React.Component<props, state> {
       duration: 0,
       bufferValue: 0,
       isLoading: true,
-      paused: false,
+      paused: true,
       playerState: PLAYER_STATES.PAUSED,
       fullscreen: false,
     };
@@ -122,7 +122,7 @@ class App extends React.Component<props, state> {
               }}
               onError={(e) => {
                 // console.log(e);
-                // this.setState({ error: e });
+                // this.setState({ error: e })
               }}
             />
             {Platform.OS === 'android' ? (
@@ -160,12 +160,13 @@ class App extends React.Component<props, state> {
                 // onSkipBack={() =>
                 //   this.videoPlayer.current?.seek(this.state.currentTime - 5, 30)
                 // }
-                showVolume={true}
-                showBrightness={true}
+                // showVolume={true}
+                // showBrightness={true}
+                 // sliderType="Swipe"
                 // VSliderOuterStyles={{marginHorizontal:40}}
                 // VSliderInnerStyles={{}}
                 // onFullScreen={Platform.OS==="ios"?()=>{}:null}
-                sliderType="Swipe"
+               
                 // sliderScale
               >
                 {/* <MediaControls.Toolbar></MediaControls.Toolbar> */}

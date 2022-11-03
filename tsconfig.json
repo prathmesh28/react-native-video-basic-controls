@@ -28,16 +28,14 @@
   "include": [
     "./**/*"
   ],
-  // "exclude": ["node_modules"]
   "exclude": [
     "./plugins/**/*",
     "./typings/**/*",
     "./built/**/*",
     "./**/*.js",
     "node_modules", 
-    "build", 
-    "dist", 
+    "./src/**/*.js", 
     "src/**/*.js", 
-    "src/**/*.jsx"
+    "./src/SliderOP.js", 
   ]
 }
